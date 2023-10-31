@@ -1,5 +1,6 @@
 package com.fsck.k9.mail.transport.smtp
 
+import com.fsck.k9.helper.DNSHelper
 import com.fsck.k9.logging.Timber
 import com.fsck.k9.mail.Address
 import com.fsck.k9.mail.AuthType
@@ -246,7 +247,7 @@ class SmtpTransport(
     }
 
     private fun connect(): Socket {
-        val inetAddresses = InetAddress.getAllByName(host)
+        val inetAddresses = DNSHelper.getAllByName(host)
 
         var connectException: Exception? = null
         for (address in inetAddresses) {

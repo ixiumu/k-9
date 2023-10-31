@@ -1,5 +1,6 @@
 package com.fsck.k9.mail.store.imap
 
+import com.fsck.k9.helper.DNSHelper
 import com.fsck.k9.logging.Timber
 import com.fsck.k9.mail.AuthType
 import com.fsck.k9.mail.Authentication
@@ -144,7 +145,7 @@ internal class RealImapConnection(
     }
 
     private fun connect(): Socket {
-        val inetAddresses = InetAddress.getAllByName(settings.host)
+        val inetAddresses = DNSHelper.getAllByName(settings.host)
 
         var connectException: Exception? = null
         for (address in inetAddresses) {

@@ -18,6 +18,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
+import com.fsck.k9.helper.DNSHelper;
 import com.fsck.k9.logging.Timber;
 import com.fsck.k9.mail.AuthType;
 import com.fsck.k9.mail.Authentication;
@@ -98,7 +99,7 @@ class Pop3Connection {
 
     private Socket connect()
             throws IOException, MessagingException, NoSuchAlgorithmException, KeyManagementException {
-        InetAddress[] inetAddresses = InetAddress.getAllByName(settings.getHost());
+        InetAddress[] inetAddresses = DNSHelper.getAllByName(settings.getHost());
 
         IOException connectException = null;
         for (InetAddress address : inetAddresses) {
